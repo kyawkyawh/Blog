@@ -15,10 +15,24 @@
                 <li class="sidebar-title">Menu</li>
 
                 <li class="sidebar-item active ">
-                    <a href="index.html" class='sidebar-link'>
+                    <a href="{{route('home')}}" class='sidebar-link'>
                         <i class="bi bi-grid-fill"></i>
                         <span>Dashboard</span>
                     </a>
+                </li>
+                <li class="sidebar-item  has-sub">
+                    <a href="#" class='sidebar-link'>
+                        <i class="bi bi-stack"></i>
+                        <span>Posts</span>
+                    </a>
+                    <ul class="submenu ">
+                        <li class="submenu-item ">
+                            <a href="{{route('posts')}}">Post List</a>
+                        </li>
+                        <li class="submenu-item ">
+                            <a href="{{route('create-post')}}">Create Post</a>
+                        </li>
+                    </ul>
                 </li>
             </ul>
         </div>

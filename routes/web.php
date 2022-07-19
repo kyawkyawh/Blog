@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,8 +18,9 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 Route::middleware(['auth'])->group(function () {
-    Route::get('/', function () {
-        return view('layouts.master');
-    });
-    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+    // Posts //
+    Route::get('/posts' , [PostController::class, 'index'])->name('posts');
+    Route::get('/posts/create' , [PostController::class, 'create'])->name('create-post');
 });
