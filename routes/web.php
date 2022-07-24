@@ -20,7 +20,11 @@ Auth::routes();
 Route::middleware(['auth'])->group(function () {
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+    //Category//
+    Route::post('store/category', [CategoryController::class, 'store'])->name('store-cate');
+
     // Posts //
     Route::get('/posts' , [PostController::class, 'index'])->name('posts');
-    Route::get('/posts/create' , [PostController::class, 'create'])->name('create-post');
+    Route::get('/post/create' , [PostController::class, 'create'])->name('create-post');
+    Route::post('post/store', [PostController::class, 'store'])->name('store-post');
 });

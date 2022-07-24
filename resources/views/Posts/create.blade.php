@@ -1,39 +1,37 @@
 @extends('layouts.master')
 @section('content')
 
-<form class="form" method="post">
+<form action="{{route('store-cate')}}" method="post">
+    @csrf
     <div class="form-body">
         <div class="form-group">
-            <label for="feedback1" class="sr-only">Name</label>
+            <label for="feedback1" class="sr-only">Category</label>
             <input type="text" id="feedback1" class="form-control"
-                placeholder="Name" name="name">
+                placeholder="Title" name="name">
         </div>
+    </div>
+</form>
+<form class="form" action="{{route('store-post')}}" method="post" enctype="multipart/form-data">
+    @csrf
+    <div class="form-body">
         <div class="form-group">
-            <label for="feedback4" class="sr-only">Last Game</label>
-            <input type="text" id="feedback4" class="form-control"
-                placeholder="Last Name" name="LastName">
-        </div>
-        <div class="form-group">
-            <label for="feedback2" class="sr-only">Email</label>
-            <input type="email" id="feedback2" class="form-control"
-                placeholder="Email" name="email">
-        </div>
-        <div class="form-group">
-            <select name="reason" class="form-control">
-                <option value="Inquiry">Inquiry</option>
-                <option value="Complain">complaints</option>
-                <option value="Quotation">Quotation</option>
-            </select>
+            <label for="feedback1" class="sr-only">Title</label>
+            <input type="text" id="feedback1" class="form-control"
+                placeholder="Title" name="title">
         </div>
         <div class="form-group form-label-group">
-            <textarea class="form-control" id="label-textarea" rows="3"
-                placeholder="Suggestion"></textarea>
+            <textarea class="form-control" id="label-textarea" name="body" rows="8"
+                placeholder="Content"></textarea>
             <label for="label-textarea"></label>
+        </div>
+        <div class="form-group form-label-group">
+            <label for="cover_photo" class="sr-only">Cover Photo</label>
+            <input type="file" class="form-control" name="cover_photo">
         </div>
     </div>
     <div class="form-actions d-flex justify-content-end">
         <button type="submit" class="btn btn-primary me-1">Submit</button>
-        <button type="reset" class="btn btn-light-primary">Cancel</button>
+        <button type="reset" class="btn btn-light-primary"><a href="{{route('posts')}}">Cancel</a></button>
     </div>
 </form>
 @endsection
