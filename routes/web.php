@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +22,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
     //Category//
+    Route::get('list/category', [CategoryController::class, 'index'])->name('list-cate');
+    Route::get('create/category', [CategoryController::class, 'create'])->name('create-cate');
     Route::post('store/category', [CategoryController::class, 'store'])->name('store-cate');
 
     // Posts //

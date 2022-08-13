@@ -14,7 +14,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $categories =  Category::all();
+        return view('categories.list', ['categories'=>$categories]);
     }
 
     /**
@@ -24,7 +25,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('categories.create');
     }
 
     /**
@@ -35,10 +36,11 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $validate = $request->validate([
-            'title'=>'required',
+        $cate = Category::create([
+            'name'=>$request->name,
         ]);
-        $category = Category::create($validate);
+
+        return redirect()->route('list-cate');
     }
 
     /**
@@ -60,7 +62,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        return view('categories.edit');
     }
 
     /**
@@ -72,7 +74,14 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $validate = $request->validate([
+            'title'=>'required',
+        ]);
+
+        $cate = Category::find($request->id);
+        $cate->update($validate);
+
+        return redirect()->route('list-cate');
     }
 
     /**
@@ -83,6 +92,9 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $cate = Category::find($request->id);
+        $cate->destroy();
+
+        return redirect()->route('list-cate');
     }
 }

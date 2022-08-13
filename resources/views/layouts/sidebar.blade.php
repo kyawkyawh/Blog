@@ -14,13 +14,19 @@
             <ul class="menu">
                 <li class="sidebar-title">Menu</li>
 
-                <li class="sidebar-item active ">
+                <li class="sidebar-item @if(request()->routeIs('home')) active @endif">
                     <a href="{{route('home')}}" class='sidebar-link'>
                         <i class="bi bi-grid-fill"></i>
                         <span>Dashboard</span>
                     </a>
                 </li>
-                <li class="sidebar-item  has-sub">
+                <li class="sidebar-item @if(request()->routeIs('list-cate')) active @endif">
+                    <a href="{{route('list-cate')}}" class='sidebar-link'>
+                        <i class="bi bi-stack"></i>
+                        <span>Category List</span>
+                    </a>
+                </li>
+                <li class="sidebar-item has-sub  @if(request()->routeIs('posts') || (request()->routeIs('create-post'))) active open @endif">
                     <a href="#" class='sidebar-link'>
                         <i class="bi bi-stack"></i>
                         <span>Posts</span>
