@@ -65,9 +65,10 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post)
+    public function show(Post $post ,Request $request)
     {
-        //
+        $post= Post::findOrFail($request->id);
+        return view('Posts.show', ['post'=>$post]);
     }
 
     /**
@@ -76,9 +77,11 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function edit(Post $post)
+    public function edit(Post $post, Request $request)
     {
-        //
+        $post = Post::findOrFail($request->id);
+        $categories = Category::all();
+        return view('Posts.edit',['post'=>$post, 'categories'=>$categories]);
     }
 
     /**
@@ -90,7 +93,23 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        $post= Post::findOrFail($request->id);
+
+        $request->validate([
+            'title' => 'required',
+            'body' => 'required',
+        ]);
+
+        $input = $request->all();
+
+        if ($image = $request->file('cover_photo')) {
+            $destinationPath = 'image/cover';
+            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $profileImage);
+            $input['cover_photo'] = "$profileImage";
+        }
+
+        Post::update($input);
     }
 
     /**
@@ -99,8 +118,9 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post)
+    public function destroy(Post $post, Request $request)
     {
-        //
+        $post = Post::findOrFail($request->id);
+        $post->delete();
     }
 }

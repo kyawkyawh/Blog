@@ -1,23 +1,36 @@
 @extends('layouts.master')
 @section("content")
-@foreach ($posts as $post)
-<div class="card">
-    <div class="card-content">
-        <div class="card-body">
-            <h4 class="card-title mb-0">{{$post->title}}</h4>
-            <small>{{$post->category->name}}</small>
-        </div>
-        <div class="">
-            <img src="/image/cover/{{ $post->cover_photo }}" width="100%" height="50%">
-        </div>
-        <div class="card-body">
-            <p class="card-text">
-                {{$post->body}}
-            </p>
-        </div>
+<section class="section">
+    <!-- table strip dark -->
+    <div class="table-responsive">
+        <table class="table table-striped table-dark mb-0">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Created Time</th>
+                    <th>Category</th>
+                    <th>Body</th>
+                    <th>ACTION</th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach ($posts as $post)
+                <tr>
+                    <td class="text-bold-500">{{$post->title}}</td>
+                    <td class="small">{{$post->created_at}}</td>
+                    <td>{{$post->category->name}}</td>
+                    <td><img src="image/cover/{{$post->cover_photo}}" width="100px"></td>
+                    <td>
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                            <a class="btn btn-primary" href="{{route('detail-post', ['id'=>$post->id])}}">Detail</a>
+                            <a class="btn btn-warning" href="{{route('edit-post', ['id'=>$post->id])}}">Edit</a>
+                            <a class="btn btn-danger" href="{{route('delete-post',['id'=>$post->id])}}">Delete</a>
+                        </div>
+                    </td>
+                </tr>
+            @endforeach
+            </tbody>
+        </table>
     </div>
-</div>
-@endforeach
-
-
+</section>
 @endsection

@@ -60,9 +60,10 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
+    public function edit(Category $category, Request $request)
     {
-        return view('categories.edit');
+        $category = Category::findOrFail($request->id);
+        return view('categories.edit',['category'=>$category]);
     }
 
     /**
@@ -74,12 +75,14 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
+        // dd($request);
+        $category = Category::findOrFail($request->id);
         $validate = $request->validate([
-            'title'=>'required',
+            'name'=>'required',
         ]);
 
-        $cate = Category::find($request->id);
-        $cate->update($validate);
+        $category->name=$request->name;
+        $category->update();
 
         return redirect()->route('list-cate');
     }
@@ -90,10 +93,10 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
+    public function destroy(Category $category ,Request $request)
     {
         $cate = Category::find($request->id);
-        $cate->destroy();
+        $cate->delete();
 
         return redirect()->route('list-cate');
     }
