@@ -20,13 +20,13 @@
                         <span>Dashboard</span>
                     </a>
                 </li>
-                <li class="sidebar-item @if(request()->routeIs('list-cate')) active @endif">
+                <li class="sidebar-item @if(request()->routeIs('list-cate')) active  @endif">
                     <a href="{{route('list-cate')}}" class='sidebar-link'>
                         <i class="bi bi-stack"></i>
                         <span>Category List</span>
                     </a>
                 </li>
-                <li class="sidebar-item has-sub  @if(request()->routeIs('posts') || (request()->routeIs('create-post'))) active open @endif">
+                <li class="sidebar-item has-sub  @if(request()->routeIs('posts') || (request()->routeIs('create-post'))) active has-sub @endif">
                     <a href="#" class='sidebar-link'>
                         <i class="bi bi-stack"></i>
                         <span>Posts</span>
