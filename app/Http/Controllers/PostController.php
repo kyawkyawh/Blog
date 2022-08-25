@@ -68,7 +68,7 @@ class PostController extends Controller
     public function show(Post $post ,Request $request)
     {
         $post= Post::findOrFail($request->id);
-        return view('Posts.show', ['post'=>$post]);
+        return view('posts.show', ['post'=>$post]);
     }
 
     /**
@@ -81,7 +81,7 @@ class PostController extends Controller
     {
         $post = Post::findOrFail($request->id);
         $categories = Category::all();
-        return view('Posts.edit',['post'=>$post, 'categories'=>$categories]);
+        return view('posts.edit',['post'=>$post, 'categories'=>$categories]);
     }
 
     /**

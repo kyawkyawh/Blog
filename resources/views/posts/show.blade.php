@@ -11,7 +11,7 @@
         </div>
         <div class="card-body">
             <p class="card-text">
-                {{$post->body}}
+                <pre>{{$post->body}}</pre>
             </p>
         </div>
         <div class="card-footer">
