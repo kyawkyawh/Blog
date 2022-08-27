@@ -40,6 +40,20 @@
                         </li>
                     </ul>
                 </li>
+                <li class="sidebar-item has-sub  @if(request()->routeIs('titles') || (request()->routeIs('create-title'))) active has-sub @endif">
+                    <a href="#" class='sidebar-link'>
+                        <i class="bi bi-stack"></i>
+                        <span>Titles</span>
+                    </a>
+                    <ul class="submenu ">
+                        <li class="submenu-item ">
+                            <a href="{{route('titles')}}">Titles List</a>
+                        </li>
+                        <li class="submenu-item ">
+                            <a href="{{route('create-title')}}">Create Title</a>
+                        </li>
+                    </ul>
+                </li>
             </ul>
         </div>
         <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>

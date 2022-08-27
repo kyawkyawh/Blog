@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\TitleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,4 +38,13 @@ Route::middleware(['auth'])->group(function () {
     Route::post('post/update', [PostController::class, 'update'])->name('update-post');
     Route::get('post/detail', [PostController::class, 'show'])->name('detail-post');
     Route::get('post/delete', [PostController::class, 'destroy'])->name('delete-post');
+
+    // Titles
+    Route::get('/titles',[TitleController::class, 'index'])->name('titles');
+    Route::get('/create/titles',[TitleController::class, 'create'])->name('create-title');
+    Route::post('/store/titles',[TitleController::class, 'store'])->name('store-title');
+    Route::get('edit/titles',[TitleController::class, 'edit'])->name('edit-title');
+    Route::post('/update/titles',[TitleController::class, 'update'])->name('update-title');
+    Route::get('delete/titles',[TitleController::class, 'destroy'])->name('delete-title');
+
 });

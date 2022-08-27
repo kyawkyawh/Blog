@@ -14,7 +14,8 @@ class TitleController extends Controller
      */
     public function index()
     {
-        return view('titles.index');
+        $titles = Title::orderBy('title')->get();
+        return view('titles.index', ['titles' => $titles]);
     }
 
     /**
@@ -35,6 +36,7 @@ class TitleController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request);
         $request->validate([
             'title' => 'required|max:255',
         ]);
@@ -48,6 +50,8 @@ class TitleController extends Controller
         }
 
         Title::create($input);
+
+        return redirect()->route('titles');
 
     }
 
@@ -68,7 +72,7 @@ class TitleController extends Controller
      * @param  \App\Models\Title  $title
      * @return \Illuminate\Http\Response
      */
-    public function edit(Title $title)
+    public function edit(Title $title, Request $request)
     {
         $title = Title::findOrFail($request->id);
         return view('titles.edit', ['title' => $title]);
@@ -84,7 +88,9 @@ class TitleController extends Controller
      */
     public function update(Request $request, Title $title)
     {
+        // dd($request);
         $title = Title::find($request->id);
+        // dd($title);
         $validate =  $request->validate([
             'title' => 'required|max:255',
         ]);
@@ -95,7 +101,9 @@ class TitleController extends Controller
             $validate['cover'] = "$profileImage";
         }
 
-        Title::update($validate);
+        $title->update($validate);
+
+        return redirect()->route('titles');
     }
 
     /**
@@ -104,9 +112,11 @@ class TitleController extends Controller
      * @param  \App\Models\Title  $title
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Title $title)
+    public function destroy(Title $title, Request $request)
     {
         $title =  Title::findOrFail($request->id);
         $title->delete();
+
+        return redirect()->route('titles');
     }
 }
