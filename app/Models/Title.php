@@ -12,6 +12,6 @@ class Title extends Model
     protected $guarded = [];
 
     public function episodes(){
-        return $this->hasMany('App\Models\Episode');
+        return $this->hasMany('App\Models\Episode' , 'title_id');
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Episode;
+use App\Models\Title;
 use Illuminate\Http\Request;
 
 class EpisodeController extends Controller
@@ -14,8 +15,9 @@ class EpisodeController extends Controller
      */
     public function index()
     {
-        $episode = Episode::all();
-        return view('episodes.index',['episode' => $episode]);
+        $episode = Episode::orderBy('created_at', 'DESC')->get();
+        // dd($episode);
+        return view('episodes.index',['episodes' => $episode]);
     }
 
     /**
@@ -25,7 +27,8 @@ class EpisodeController extends Controller
      */
     public function create()
     {
-        return view('episodes.create');
+        $titles = Title::all();
+        return view('episodes.create', ['titles'=>$titles]);
     }
 
     /**
@@ -36,7 +39,16 @@ class EpisodeController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request);
+        $validate = $request->validate([
+            'name' => 'required|max:255',
+            'text' => 'required',
+            'title_id' => 'required'
+        ]);
 
+        $episode = Episode::create($validate);
+
+        return redirect()->route('episodes');
     }
 
     /**

@@ -15,7 +15,7 @@ class CreateEpisodesTable extends Migration
     {
         Schema::create('episodes', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
+            $table->string('name');
             $table->longText('text');
             $table->foreignId('title_id')->constrained('titles')->onDelete('cascade');
             $table->timestamps();

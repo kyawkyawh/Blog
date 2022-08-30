@@ -8,8 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Episode extends Model
 {
     use HasFactory;
+    protected $table = 'episodes';
+    protected $guarded = [];
+
 
     public function title(){
         return $this->belongsTo('App\Models\Title');
     }
+
 }

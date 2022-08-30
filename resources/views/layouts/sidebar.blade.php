@@ -54,6 +54,20 @@
                         </li>
                     </ul>
                 </li>
+                <li class="sidebar-item has-sub  @if(request()->routeIs('episodes') || (request()->routeIs('create-episode'))) active has-sub @endif">
+                    <a href="#" class='sidebar-link'>
+                        <i class="bi bi-stack"></i>
+                        <span>Episode</span>
+                    </a>
+                    <ul class="submenu ">
+                        <li class="submenu-item ">
+                            <a href="{{route('episodes')}}">Episode List</a>
+                        </li>
+                        <li class="submenu-item ">
+                            <a href="{{route('create-episode')}}">Create Episode</a>
+                        </li>
+                    </ul>
+                </li>
             </ul>
         </div>
         <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>

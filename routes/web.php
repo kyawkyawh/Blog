@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\TitleController;
+use App\Http\Controllers\EpisodeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,5 +47,14 @@ Route::middleware(['auth'])->group(function () {
     Route::get('edit/titles',[TitleController::class, 'edit'])->name('edit-title');
     Route::post('/update/titles',[TitleController::class, 'update'])->name('update-title');
     Route::get('delete/titles',[TitleController::class, 'destroy'])->name('delete-title');
+
+    // Episode
+
+    Route::get('/episodes',[EpisodeController::class, 'index'])->name('episodes');
+    Route::get('/episodes/create',[EpisodeController::class, 'create'])->name('create-episode');
+    Route::post('/store/episodes',[EpisodeController::class, 'store'])->name('store-episode');
+    Route::get('edit/episodes',[EpisodeController::class, 'edit'])->name('edit-episode');
+    Route::post('/update/episodes',[EpisodeController::class, 'update'])->name('update-episode');
+    Route::get('delete/episodes',[EpisodeController::class, 'destroy'])->name('delete-episode');
 
 });
