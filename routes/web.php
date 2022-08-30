@@ -45,6 +45,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/create/titles',[TitleController::class, 'create'])->name('create-title');
     Route::post('/store/titles',[TitleController::class, 'store'])->name('store-title');
     Route::get('edit/titles',[TitleController::class, 'edit'])->name('edit-title');
+    Route::get('/titles/epidodes',[TitleController::class, 'show'])->name('show-title');
     Route::post('/update/titles',[TitleController::class, 'update'])->name('update-title');
     Route::get('delete/titles',[TitleController::class, 'destroy'])->name('delete-title');
 

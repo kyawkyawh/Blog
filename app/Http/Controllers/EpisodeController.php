@@ -59,7 +59,7 @@ class EpisodeController extends Controller
      */
     public function show(Episode $episode)
     {
-        //
+
     }
 
     /**
@@ -68,9 +68,11 @@ class EpisodeController extends Controller
      * @param  \App\Models\Episode  $episode
      * @return \Illuminate\Http\Response
      */
-    public function edit(Episode $episode)
+    public function edit(Episode $episode, Request $request)
     {
-        return view('episode.edit');
+        $episode = Episode::findOrFail($request->id);
+        $titles = Title::all();
+        return view('episodes.edit', ['episode'=>$episode, 'titles'=>$titles]);
     }
 
     /**
@@ -82,7 +84,16 @@ class EpisodeController extends Controller
      */
     public function update(Request $request, Episode $episode)
     {
-        //
+        $episode = Episode::findOrFail($request->id);
+        $validate = $request->validate([
+            'name' => 'required|max:255',
+            'text' => 'required',
+            'title_id' => 'required'
+        ]);
+
+        $episode = Episode::update($validate);
+
+        return redirect()->route('episodes');
     }
 
     /**
@@ -91,8 +102,11 @@ class EpisodeController extends Controller
      * @param  \App\Models\Episode  $episode
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Episode $episode)
+    public function destroy(Episode $episode, Request $request)
     {
-        //
+        $episode = Episode::findOrFail($request->id);
+        $episode->delete();
+
+        return redirect()->route('episodes');
     }
 }

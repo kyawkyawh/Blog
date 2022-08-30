@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Title;
+use App\Models\Episode;
 use Illuminate\Http\Request;
 
 class TitleController extends Controller
@@ -61,9 +62,12 @@ class TitleController extends Controller
      * @param  \App\Models\Title  $title
      * @return \Illuminate\Http\Response
      */
-    public function show(Title $title)
+    public function show(Title $title, Request $request)
     {
+        $title = Title::findOrFail($request->id);
+        $episodes = Episode::where('title_id', $request->id)->get();
 
+        return view('titles.allepisode', ['episodes' => $episodes]);
     }
 
     /**

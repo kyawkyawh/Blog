@@ -20,6 +20,7 @@
                     <td class="small">{{$title->created_at}}</td>
                     <td>
                         <a class="btn btn-warning" href="{{route('edit-title', ['id'=>$title->id])}}">Edit</a>
+                        <a class="btn btn-warning" href="{{route('show-title', ['id'=>$title->id])}}">Detail</a>
                         <a class="btn btn-danger" href="{{route('delete-title',['id'=>$title->id])}}">Delete</a>
                     </td>
                 </tr>

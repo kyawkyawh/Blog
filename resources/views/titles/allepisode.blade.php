@@ -14,13 +14,13 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($titles as $title)
+                @foreach ($episodes as $episode)
                 <tr>
-                    <td class="text-bold-500">{{$title->title}}</td>
-                    <td class="small">{{$title->created_at}}</td>
+                    <td class="text-bold-500">{{$episode->name}}</td>
+                    <td class="small">{{$episode->text}}</td>
                     <td>
-                        <a class="btn btn-warning" href="{{route('edit-title', ['id'=>$title->id])}}">Edit</a>
-                        <a class="btn btn-danger" href="{{route('delete-title',['id'=>$title->id])}}">Delete</a>
+                        <a class="btn btn-warning" href="{{route('edit-episode', ['id'=>$episode->id])}}">Edit</a>
+                        <a class="btn btn-danger" href="{{route('delete-episode',['id'=>$episode->id])}}">Delete</a>
                     </td>
                 </tr>
                 @endforeach
