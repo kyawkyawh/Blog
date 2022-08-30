@@ -40,6 +40,7 @@ class TitleController extends Controller
         // dd($request);
         $request->validate([
             'title' => 'required|max:255',
+            'description' => 'required',
         ]);
         $input = $request->all();
 
@@ -67,7 +68,7 @@ class TitleController extends Controller
         $title = Title::findOrFail($request->id);
         $episodes = Episode::where('title_id', $request->id)->get();
 
-        return view('titles.allepisode', ['episodes' => $episodes]);
+        return view('titles.allepisode', ['episodes' => $episodes, 'title' => $title]);
     }
 
     /**
@@ -97,6 +98,7 @@ class TitleController extends Controller
         // dd($title);
         $validate =  $request->validate([
             'title' => 'required|max:255',
+            'description' => 'required',
         ]);
         if ($image = $request->file('cover')) {
             $destinationPath = 'image/title/cover';
@@ -122,5 +124,10 @@ class TitleController extends Controller
         $title->delete();
 
         return redirect()->route('titles');
+    }
+
+    public function detail(Request $request){
+        $title = Title::findOrFail($request->id);
+        return view('titles.detail', ['title'=>$title]);
     }
 }

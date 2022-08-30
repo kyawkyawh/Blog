@@ -1,8 +1,6 @@
 @extends('layouts.master')
 @section('content')
-<div class="d-flex justify-content-end">
-    <a class="btn btn-primary rounded-pill mb-5" href="{{route('create-cate')}}">Create New Category</a>
-</div>
+    <h1 class="text-center" style="padding: 5%">{{$title->title}}</h1>
     <!-- table head dark -->
     <div class="table-responsive">
         <table class="table table-striped table-dark mb-0">
@@ -17,7 +15,7 @@
                 @foreach ($episodes as $episode)
                 <tr>
                     <td class="text-bold-500">{{$episode->name}}</td>
-                    <td class="small">{{$episode->text}}</td>
+                    <td class="small">{{$episode->created_at}}</td>
                     <td>
                         <a class="btn btn-warning" href="{{route('edit-episode', ['id'=>$episode->id])}}">Edit</a>
                         <a class="btn btn-danger" href="{{route('delete-episode',['id'=>$episode->id])}}">Delete</a>

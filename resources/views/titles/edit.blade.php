@@ -9,6 +9,11 @@
                 placeholder="Title" value="{{$title->title}}" name="title">
         </div>
         <div class="form-group form-label-group">
+            <textarea class="form-control" id="label-textarea" name="description" rows="8"
+                placeholder="Content">{{$title->description}}</textarea>
+            <label for="label-textarea"></label>
+        </div>
+        <div class="form-group form-label-group">
             <label for="cover_photo" class="sr-only">Cover Photo</label>
             <input type="file" class="form-control" name="cover">
         </div>
